@@ -44,7 +44,13 @@ ASU_API_KEY=<your-key>
 ASU_BASE_URL=https://openai.rc.asu.edu/v1
 ```
 
-The `.env` file is loaded automatically at startup. 
+A `.env.example` file is included in the repo — copy it and fill in your key:
+
+```powershell
+copy .env.example .env
+```
+
+The `.env` file is loaded automatically at startup.
 
 ## Run
 
