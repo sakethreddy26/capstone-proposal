@@ -1,0 +1,27 @@
+[
+  {
+    "repo": "repo_a",
+    "fixed": true,
+    "has_tests": false,
+    "rounds": 2,
+    "cmds": 2,
+    "edits": 0,
+    "approved": 0,
+    "rejected": 0,
+    "edited_files": [],
+    "log": [
+      {
+        "round": 1,
+        "action": "COMMAND",
+        "cmd": "pip install pyyaml",
+        "result": "ok"
+      },
+      {
+        "round": 2,
+        "action": "COMMAND",
+        "cmd": "pip install requests",
+        "result": "ok"
+      }
+    ]
+  }
+]
