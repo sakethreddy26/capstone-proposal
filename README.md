@@ -2,6 +2,8 @@
 
 A CLI tool that takes a broken repo, runs it, reads the error, and iterates to fix it. The fixer proposes install commands or file edits. Every file edit must be approved by a separate judge agent before it is written to disk.
 
+Requires Python 3.10+.
+
 ## How it works
 
 1. Copies the fixture to a temp directory so the original is never modified.
@@ -27,10 +29,13 @@ results/      run output written here
 **1. Install dependencies**
 
 ```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
+
+> Only needed once per machine. Skip if scripts are already enabled.
 
 **2. Create a `.env` file** in the project root with your API credentials:
 
@@ -57,6 +62,26 @@ python fix_repo.py --all --max-rounds 6 --out results/runs.json
 ## Output
 
 Results are printed as a table in the terminal and written to `results/runs.json`.
+
+A successful run on `fixtures/repo_a` looks like this:
+
+```
+============================================================
+  Repo:    repo_a
+  Command: python main.py
+  Tests:   none detected (exit code only)
+============================================================
+  Working dir: C:\Users\...\AppData\Local\Temp\repo_fixer_...
+  [install] ok
+  [run] initial: ok=False
+
+  [fixer proposes EDIT -> requirements.txt]
+  ...
+  round  1: COMMAND  pip install pyyaml  [ok]
+  round  2: COMMAND  pip install requests  [ok]
+
+  Result: FIXED  (rounds=2, cmds=2, edits=0, approved=0, rejected=0)
+```
 
 ## Fixtures
 
